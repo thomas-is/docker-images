@@ -1,0 +1,5 @@
+#!/bin/sh
+
+STAMP=$( date +"%Y%m%d%H%M" )
+mv /var/log/docker.log /var/log/docker-$STAMP.log
+gzip /var/log/docker-$STAMP.log
