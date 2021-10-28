@@ -3,7 +3,10 @@ ARG ALPINE=latest
 FROM alpine:$ALPINE
 
 RUN apk update && apk upgrade \
-&&  apk add ca-certificates rsyslog rsyslog-imdocker
+&&  apk add ca-certificates \
+  rsyslog \
+  rsyslog-imdocker \
+  rsyslog-elasticsearch
 
 RUN rm -rf /var/cache/apk/*
 
