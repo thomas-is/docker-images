@@ -6,6 +6,7 @@ RUN apk update && apk upgrade \
 &&  apk add ca-certificates \
   rsyslog \
   rsyslog-imdocker \
+  rsyslog-mmjsonparse \
   rsyslog-elasticsearch
 
 RUN rm -rf /var/cache/apk/*
