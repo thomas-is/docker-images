@@ -1,5 +1,5 @@
 #!/bin/sh
 
-STAMP=$( date +"%Y%m%d%H%M" )
-mv /var/log/docker.log /var/log/docker-$STAMP.log
-gzip /var/log/docker-$STAMP.log && rm /var/log/docker-$STAMP.log
+STAMP=$( date +"%Y%m%d_%H%M%S" )
+mv /var/log/${OMFILE_NAME}.log /var/log/${OMFILE_NAME}-$STAMP.log
+gzip /var/log/${OMFILE_NAME}-$STAMP.log && rm /var/log/${OMFILE_NAME}-$STAMP.log
