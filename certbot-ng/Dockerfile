@@ -12,7 +12,7 @@ RUN mkdir -p /run/nginx
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
 
-COPY ./default.conf  /etc/nginx/conf.d/default.conf
+COPY ./default.conf  /etc/nginx/http.d/default.conf
 
 VOLUME [ "/etc/letsencrypt" ]
 EXPOSE 80 443
