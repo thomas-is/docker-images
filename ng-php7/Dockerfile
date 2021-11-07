@@ -4,6 +4,7 @@ FROM alpine:$ALPINE
 
 ENV FPM_USER      nobody
 ENV FPM_CLEAR_ENV yes
+ENV LOG_FORMAT    main
 
 RUN apk update && apk upgrade && \
   apk add ca-certificates nginx php7 php7-fpm \
@@ -22,7 +23,7 @@ RUN mkdir -p /run/nginx
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 
-COPY ./ng-default.conf /etc/nginx/conf.d/default.conf
+COPY ./ng-default.conf /etc/nginx/http.d/default.conf
 COPY ./srv /srv
 
 WORKDIR /srv

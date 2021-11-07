@@ -19,6 +19,10 @@ if [ "$(id -u)" = 0 ] ; then
     sed -e 's/;clear_env/clear_env/g' -i /etc/php7/php-fpm.d/www.conf
   fi
 
+  if [ "$LOG_FORMAT" != "main" ] ; then
+    sed -e "s/access_log \/dev\/stdout main;/access_log \/dev\/stdout $LOG_FORMAT;/g" -i /etc/nginx/http.d/default.conf
+  fi
+
   php-fpm7 --allow-to-run-as-root
 
 fi
