@@ -16,11 +16,10 @@ cat <<-EOF > /etc/rsyslog.conf
 
 module(load="immark")
 module(load="imtcp")
+module(load="imudp")
 
-input(
-	type="imtcp"
-	port="514"
-)
+input( type="imtcp" port="514" )
+input( type="imudp" port="514" )
 EOF
 
 if [ "${OMFILE_NAME}" != "" ] ; then
