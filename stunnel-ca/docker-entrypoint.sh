@@ -13,6 +13,7 @@ client = ${CLIENT:-no}
 [tunnel]
 accept  = ${ACCEPT}
 connect = ${CONNECT}
+delay = ${DELAY}
 cert = /etc/letsencrypt/live/${SSL_DOMAIN}/fullchain.pem
 key =  /etc/letsencrypt/live/${SSL_DOMAIN}/privkey.pem
 CApath = /etc/ssl/certs
