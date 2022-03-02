@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# PMA config
-sed -e "s/\${PMA_SERVERS}/$PMA_SERVERS/g" -i /etc/phpmyadmin/config.inc.php
-
-php-fpm7
+sed -e 's/;clear_env/clear_env/g' -i /etc/php8/php-fpm.d/www.conf
+php-fpm8
 
 exec "$@"

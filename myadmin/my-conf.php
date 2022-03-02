@@ -23,9 +23,8 @@
  * Servers configuration
  */
   $i=0;
-
   $i++;
-  $pma_servers = explode(',','${PMA_SERVERS}');
+  $pma_servers = explode(',',getenv('PMA_SERVERS'));
   foreach( $pma_servers as $pma_server ) {
     $cfg['Servers'][$i]['host'] = trim($pma_server);
     $cfg['Servers'][$i]['auth_type'] = 'cookie';
