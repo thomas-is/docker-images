@@ -5,11 +5,11 @@ FROM alpine:$ALPINE
 ENV PMA_SERVERS "localhost"
 
 RUN apk update && apk upgrade
-RUN apk add ca-certificates nginx php7-fpm phpmyadmin
+RUN apk add --no-cache ca-certificates nginx php8-fpm phpmyadmin
 RUN rm -rf /var/cache/apk/*
 
 RUN mkdir -p /run/nginx
-COPY ng-default.conf /etc/nginx/conf.d/default.conf
+COPY ng-default.conf /etc/nginx/http.d/default.conf
 
 COPY my-conf.php /etc/phpmyadmin/config.inc.php
 RUN chmod 644 /etc/phpmyadmin/config.inc.php
