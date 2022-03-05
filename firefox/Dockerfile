@@ -7,9 +7,11 @@ ENV USER_ID 1000
 RUN apk update && apk upgrade \
 &&  apk add shadow \
   tor \
+  xorg-server-dev \
+  pciutils-libs \
+  mesa-demos mesa-dri-ati mesa-dri-intel mesa-dri-nouveau mesa-dri-swrast \
   firefox-esr \
   ffmpeg \
-  xorg-server-dev \
   ttf-tlwg \
   pulseaudio \
   gnome-icon-theme
