@@ -14,7 +14,8 @@
       "Locked": false
     },
     "SearchEngines": {
-      "Default": "DuckDuckGo"
+      "Default": "DuckDuckGo",
+      "Remove": ["Google"]
     },
     "DefaultDownloadDirectory": "${home}/downloads",
     "Homepage": {
