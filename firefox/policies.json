@@ -4,6 +4,7 @@
     "OverridePostUpdatePage": "",
     "DisableProfileRefresh": true,
     "DisableTelemetry": true,
+    "OfferToSaveLogins": false,
     "FirefoxHome": {
       "Search": true,
       "TopSites": false,
