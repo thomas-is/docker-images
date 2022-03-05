@@ -27,6 +27,16 @@
     "browser.tabs.warnOnClose": {
       "Value": false,
       "Status": "locked"
+    },
+    "ExtensionSettings": {
+      "{d10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d}": {
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/%7Bd10d0bf8-f5b5-c8b4-a8b2-2b9879e08c5d%7D/latest.xpi"
+      },
+      "jid1-MnnxcxisBPnSXQ@jetpack": {
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/jid1-MnnxcxisBPnSXQ@jetpack/latest.xpi"
+      }
     }
   }
 }
