@@ -3,6 +3,7 @@
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
     "DisableProfileRefresh": true,
+    "DisableTelemetry": true,
     "FirefoxHome": {
       "Search": true,
       "TopSites": false,
