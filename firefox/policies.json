@@ -1,0 +1,30 @@
+{
+  "policies": {
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "DisableProfileRefresh": true,
+    "FirefoxHome": {
+      "Search": true,
+      "TopSites": false,
+      "SponsoredTopSites": false,
+      "Highlights": false,
+      "Pocket": false,
+      "SponsoredPocket": false,
+      "Snippets": false,
+      "Locked": false
+    },
+    "SearchEngines": {
+      "Default": "DuckDuckGo"
+    },
+    "DefaultDownloadDirectory": "${home}/downloads",
+    "Homepage": {
+      "URL": "https://duckduckgo.com/",
+      "Locked": true,
+      "StartPage": "homepage"
+    },
+    "browser.tabs.warnOnClose": {
+      "Value": false,
+      "Status": "locked"
+    }
+  }
+}
