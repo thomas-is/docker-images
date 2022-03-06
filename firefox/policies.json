@@ -39,9 +39,11 @@
       "Locked": true,
       "StartPage": "homepage"
     },
-    "browser.tabs.warnOnClose": {
-      "Value": false,
-      "Status": "locked"
+    "Preferences": {
+      "browser.tabs.warnOnClose": {
+        "Value": false,
+        "Status": "locked"
+      }
     },
     "datareporting.policy.firstRunURL": {
       "Value": "",
