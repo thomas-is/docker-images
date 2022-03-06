@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker build -t firefox .
+docker build -t firefox . || exit 1
 
 docker run --rm -it \
   --name firefox \
