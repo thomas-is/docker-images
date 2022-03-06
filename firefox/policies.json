@@ -1,5 +1,19 @@
 {
   "policies": {
+    "Proxy": {
+      "Mode": "manual",
+        "Locked": false,
+        "HTTPProxy": "",
+        "UseHTTPProxyForAllProtocols": true,
+        "SSLProxy": "",
+        "FTPProxy": "",
+        "SOCKSProxy": "localhost:9050",
+        "SOCKSVersion": 5,
+        "Passthrough": "<local>",
+        "AutoConfigURL": "",
+        "AutoLogin": false,
+        "UseProxyForDNS": true
+    },
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
     "DisableProfileRefresh": true,
@@ -27,6 +41,10 @@
     },
     "browser.tabs.warnOnClose": {
       "Value": false,
+      "Status": "locked"
+    },
+    "datareporting.policy.firstRunURL": {
+      "Value": "",
       "Status": "locked"
     },
     "ExtensionSettings": {
