@@ -14,6 +14,7 @@
         "AutoLogin": false,
         "UseProxyForDNS": true
     },
+    "SanitizeOnShutdown": true,
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
     "DisableProfileRefresh": true,
