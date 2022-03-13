@@ -9,6 +9,7 @@ docker run --rm -it \
   --device /dev/vga_arbiter \
   -e USER_ID=$(id -u) \
   -e HOME=/home/firefox \
+  -v $HOME/tmp/docker:/home/firefox \
   -e DISPLAY=unix$DISPLAY \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v $HOME/.Xauthority:/firefox/.Xauthority:ro \
