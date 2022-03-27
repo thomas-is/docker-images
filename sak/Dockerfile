@@ -3,16 +3,22 @@ ARG ALPINE=latest
 FROM alpine:$ALPINE
 
 RUN apk update && apk upgrade
-RUN apk add ca-certificates figlet \
+RUN apk add \
+  bind-tools \
   busybox-extras \
-  bind-tools netcat-openbsd \
-  curl jq \
-  openssh-client \
-  mysql-client \
-  psqlodbc postgresql-client \
+  bzip2 \
+  ca-certificates \
+  curl \
+  figlet \
   git \
-  bzip2 gzip zip \
-  vim
+  gzip \
+  jq \
+  mysql-client \
+  netcat-openbsd \
+  openssh-client \
+  postgresql-client psqlodbc \
+  vim \
+  zip
 
 RUN rm -rf /var/cache/apk/*
 
