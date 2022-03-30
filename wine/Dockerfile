@@ -2,15 +2,18 @@ FROM --platform=linux/386 alpine:3.15
 
 RUN  apk update && apk upgrade && \
   apk add --no-cache \
-    shadow \
-    wine \
-    xorg-server-dev \
-    pciutils-libs \
-    mesa-demos mesa-dri-ati mesa-dri-intel mesa-dri-nouveau mesa-dri-swrast \
+    alsa-plugins-pulse \
+    cabextract \
     ffmpeg \
-    ttf-tlwg \
+    gnome-icon-theme \
+    mesa-demos mesa-dri-ati mesa-dri-intel mesa-dri-nouveau mesa-dri-swrast \
+    pciutils-libs \
     pulseaudio \
-    gnome-icon-theme
+    shadow \
+    ttf-tlwg \
+    wget \
+    wine \
+    xorg-server-dev
 
 
 RUN adduser wine -h /home/wine --disabled-password
@@ -20,7 +23,6 @@ ADD https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetrick
 COPY ./docker-entrypoint.sh  /usr/local/bin/
 RUN chmod -R 755 /usr/local/bin
 
-RUN su wine -c "/usr/local/bin/winetricks sound=pulse"
 WORKDIR /home/wine
 
 ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
