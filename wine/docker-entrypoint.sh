@@ -1,9 +1,14 @@
 #!/bin/sh
 
 usermod wine -u $USER_ID
-su wine -c "wineboot"
-su wine -c "/usr/local/bin/winetricks d3dx9"
-su wine -c "/usr/local/bin/winetricks d3dx9_41"
+
+# skip MONO install on init
+su wine -c "WINEDLLOVERRIDES=\"mscoree=\" wineboot"
+
+# winetricks section
+if [ "$WINETRICKS" != "" ] ; then
+  su wine -c "winetricks $WINETRICKS"
+fi
+
 CMD="$@"
-#su wine -c "$CMD"
-exec $CMD
+su wine -c "$CMD"

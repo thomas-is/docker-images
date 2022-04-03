@@ -4,10 +4,11 @@ docker build -t wine . || exit 1
 
 docker run --rm -it \
   --name wine \
-  --shm-size=2048m \
+  --shm-size=4G \
   --device /dev/dri \
   --device /dev/vga_arbiter \
   -e USER_ID=$(id -u) \
+  -e WINETRICKS="isolate_home d3dx9_41" \
   -e HOME=/home/wine \
   -e DISPLAY=unix$DISPLAY \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
