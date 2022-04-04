@@ -1,4 +1,5 @@
-FROM --platform=linux/386 i386/alpine:edge
+ARG ALPINE=latest
+FROM --platform=linux/386 i386/alpine:$ALPINE
 
 ENV USER_ID 1000
 ENV WINETRICKS ""
@@ -20,12 +21,13 @@ RUN  apk update && apk upgrade && \
     wine \
     xorg-server-dev
 
-COPY profile /etc/profile
+ADD https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks /usr/local/bin/winetricks
 
 RUN adduser wine -h /home/wine --disabled-password
+RUN mkdir -p /home/wine/.wine
 RUN chown -R wine:wine /home/wine
 
-ADD https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks /usr/local/bin/winetricks
+COPY profile /etc/profile
 COPY ./docker-entrypoint.sh  /usr/local/bin/
 RUN chmod -R 755 /usr/local/bin
 
