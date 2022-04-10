@@ -13,7 +13,8 @@ RUN apk update && apk upgrade && \
   php7-openssl \
   php7-pdo php7-pdo_mysql php7-pdo_pgsql \
   php7-pecl-ssh2 \
-  php7-session
+  php7-session \
+  ghostscript
 
 RUN rm -rf /var/cache/apk/*
 
