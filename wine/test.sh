@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker build -t wine . || exit 1
+docker build -t wine --build-arg ALPINE=edge . || exit 1
 
 docker run --rm -it \
   --name wine \
