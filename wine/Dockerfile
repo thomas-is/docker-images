@@ -12,6 +12,7 @@ RUN  apk update && apk upgrade && \
     freetype \
     gnome-icon-theme \
     mesa-demos mesa-dri-ati mesa-dri-intel mesa-dri-nouveau mesa-dri-swrast \
+    mesa-vulkan-ati mesa-vulkan-intel \
     pciutils-libs \
     pulseaudio \
     shadow \
@@ -21,7 +22,8 @@ RUN  apk update && apk upgrade && \
     wine \
     xorg-server-dev
 
-ADD https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks /usr/local/bin/winetricks
+ADD https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks /usr/bin/winetricks
+RUN chmod 755 /usr/bin/winetricks
 
 RUN adduser wine -h /home/wine --disabled-password
 RUN mkdir -p /home/wine/.wine
