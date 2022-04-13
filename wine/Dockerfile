@@ -1,13 +1,17 @@
-ARG ALPINE=latest
-FROM --platform=linux/386 i386/alpine:$ALPINE
+FROM --platform=linux/386 i386/alpine:edge
 
-ENV USER_ID 1000
-ENV WINETRICKS ""
+ENV USER_ID    1000
+ENV VIDEO_GID  44
+ENV RENDER_GID 107
+ENV WINETRICKS "dxvk"
 
+# enable testing repository
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN  apk update && apk upgrade && \
   apk add --no-cache \
     alsa-plugins-pulse \
     cabextract \
+    dxvk \
     ffmpeg \
     freetype \
     gnome-icon-theme \
@@ -16,6 +20,7 @@ RUN  apk update && apk upgrade && \
     pciutils-libs \
     pulseaudio \
     shadow \
+    sudo \
     ttf-tlwg \
     vim \
     wget \
@@ -28,6 +33,8 @@ RUN chmod 755 /usr/bin/winetricks
 RUN adduser wine -h /home/wine --disabled-password
 RUN mkdir -p /home/wine/.wine
 RUN chown -R wine:wine /home/wine
+
+RUN echo "wine ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wine
 
 COPY profile /etc/profile
 COPY ./docker-entrypoint.sh  /usr/local/bin/
