@@ -43,11 +43,20 @@ printf "${GRN}success$RST\n"
 for IMAGE in $IMAGELIST
 do
 
-  if [ ! -f $IMAGE/Dockerfile ] ; then continue ; fi
-  if [ ! -f $IMAGE/README.md ] ; then continue ; fi
-  if [ -f $IMAGE/ignore ] ; then echo "${ORG}Skipping $IMAGE"; continue ; fi
+  if [ ! -f $IMAGE/Dockerfile ] ; then
+    printf "[${ORG}warn$RST] skip $IMAGE, no Dockerfile.\n"
+    continue
+  fi
+  if [ ! -f $IMAGE/README.md ] ; then
+    printf "[${ORG}warn$RST] skip $IMAGE, no README.md.\n"
+    continue
+  fi
+  if [ -f $IMAGE/ignore ] ; then
+    printf "[${BLU}info$RST] ignore $IMAGE.\n"
+    continue
+  fi
 
-  printf "updating README of $REPO/$IMAGE ... "
+  printf "[${BLU}info$RST] updating README of $REPO/$IMAGE ... "
   REPO_URL="https://hub.docker.com/v2/repositories/$REPO/$IMAGE/"
   PAYLOAD=$( jq -nc --arg desc "$( cat ./$IMAGE/README.md )" '{"full_description": $desc}' )
   STATUS=$( curl -s --output /dev/null --write-out %{response_code} \
