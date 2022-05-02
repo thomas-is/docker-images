@@ -3,7 +3,6 @@ ARG ALPINE=latest
 FROM alpine:$ALPINE
 
 ENV FPM_USER      nobody
-ENV FPM_CLEAR_ENV yes
 ENV LOG_FORMAT    main
 
 RUN apk update && apk upgrade && \
