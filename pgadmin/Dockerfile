@@ -1,6 +1,4 @@
-ARG ALPINE=latest
-
-FROM alpine:$ALPINE
+FROM alpine:3.15
 
 ENV PGA_SERVERS "localhost"
 
@@ -9,7 +7,7 @@ RUN apk add ca-certificates git nginx postgresql-client php7-fpm php7-session ph
 RUN rm -rf /var/cache/apk/*
 
 RUN mkdir -p /run/nginx
-COPY ng-default.conf /etc/nginx/conf.d/default.conf
+COPY ng-default.conf /etc/nginx/http.d/default.conf
 
 RUN git clone https://github.com/phppgadmin/phppgadmin /srv
 COPY pg-conf.php /srv/conf/config.inc.php
