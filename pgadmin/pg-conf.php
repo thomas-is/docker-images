@@ -23,7 +23,7 @@
 // pgadmin default config
 	$conf['default_lang'] = 'auto';
 	$conf['autocomplete'] = 'default on';
-	$conf['extra_login_security'] = true;
+	$conf['extra_login_security'] = false;
 	$conf['owned_only'] = false;
 	$conf['show_comments'] = true;
 	$conf['show_advanced'] = false;
