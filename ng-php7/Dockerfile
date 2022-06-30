@@ -1,6 +1,4 @@
-ARG ALPINE=latest
-
-FROM alpine:$ALPINE
+FROM alpine:3.15
 
 ENV FPM_USER    nobody
 ENV LOG_FORMAT  main
