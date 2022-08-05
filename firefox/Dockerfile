@@ -5,30 +5,27 @@ FROM alpine:$ALPINE
 ENV USER_ID 1000
 ENV PROFILE profile
 
-RUN apk update && apk upgrade \
-&&  apk add shadow \
-  tor \
-  firefox-esr \
-  ttf-dejavu ttf-tlwg \
-  xorg-server-dev \
-  pciutils-libs \
-  mesa-demos mesa-dri-ati mesa-dri-intel mesa-dri-nouveau mesa-dri-swrast \
+RUN apk add --no-cache \
   ffmpeg \
+  firefox-esr \
+  gnome-icon-theme \
+  mesa-demos mesa-dri-ati mesa-dri-intel mesa-dri-nouveau mesa-dri-swrast \
+  pciutils-libs \
   pulseaudio \
-  gnome-icon-theme
+  shadow \
+  tor \
+  ttf-dejavu ttf-tlwg \
+  xorg-server-dev
 
-RUN rm -rf /var/cache/apk/*
-
-RUN adduser firefox -h /home/firefox --disabled-password
-RUN chown -R firefox:firefox /home/firefox
-RUN chown -R firefox:firefox /var/lib/tor
-RUN chown -R firefox:firefox /var/log/tor
-
-COPY ./policies.json /usr/lib/firefox/distribution/policies.json
-
+COPY ./policies.json         /usr/lib/firefox/distribution/policies.json
 COPY ./newnym                /usr/local/bin/
 COPY ./docker-entrypoint.sh  /usr/local/bin/
-RUN chmod -R 755 /usr/local/bin
+
+RUN adduser firefox -h /home/firefox --disabled-password \
+  && chown -R firefox:firefox /home/firefox \
+  && chown -R firefox:firefox /var/lib/tor \
+  && chown -R firefox:firefox /var/log/tor \
+  && chmod -R 755 /usr/local/bin
 
 WORKDIR /home/firefox
 
