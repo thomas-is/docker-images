@@ -9,8 +9,6 @@ RUN apk add --no-cache \
   bzip2 \
   ca-certificates \
   curl \
-  figlet \
-  git \
   gzip \
   jq \
   mysql-client \
