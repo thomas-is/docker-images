@@ -7,7 +7,7 @@ mongodump \
   -u $MONGO_USER \
   -p $MONGO_PASS \
   -d $MONGO_DB \
-  --out /storage/$MONGO_DB
+  --out /storage/$MONGO_DB \
   $MONGO_DB
 
 cd /storage
