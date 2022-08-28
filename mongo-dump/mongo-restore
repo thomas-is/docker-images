@@ -1,0 +1,19 @@
+#!/bin/sh
+
+DUMP=( realpath $1 )
+
+if [ -f "$DUMP" ] ; then
+  echo "[fatal] file not found: $DUMP"
+  exit 1
+fi
+
+cd $( dirname $DUMP )
+tar xvzf $DUMP
+
+mongorestore \
+  --host mongo.www \
+  -u $MONGO_USER \
+  -p $MONGO_PASS \
+  -d $MONGO_DB \
+  $MONGO_DB
+
