@@ -11,6 +11,7 @@ RUN apk add --no-cache \
   curl \
   gzip \
   jq \
+  mongodb-tools \
   mysql-client \
   netcat-openbsd \
   openssh-client \
