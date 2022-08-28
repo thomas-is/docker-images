@@ -1,0 +1,14 @@
+#!/bin/sh
+
+ARCHIVE="mongo-$( date +"%Y%m%d_%H%M" ).tbz2"
+
+mongodump \
+  --host mongo.www \
+  -u $MONGO_USER \
+  -p $MONGO_PASS \
+  -d $MONGO_DB \
+  --out /storage/$MONGO_DB
+  $MONGO_DB
+
+cd /storage
+tar cvjf $ARCHIVE $MONGO_DB
