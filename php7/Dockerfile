@@ -4,7 +4,7 @@ ENV FPM_USER nobody
 
 RUN apk add --no-cache \
   ca-certificates \
-  ghostscript
+  ghostscript \
   php7 \
   php7-curl \
   php7-fpm \
@@ -16,7 +16,7 @@ RUN apk add --no-cache \
   php7-pdo_mysql \
   php7-pdo_pgsql \
   php7-pecl-ssh2 \
-  php7-session \
+  php7-session
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
