@@ -17,6 +17,10 @@ RUN apk add --no-cache \
   ttf-dejavu ttf-tlwg \
   xorg-server-dev
 
+RUN apk add --no-cache \
+  --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+  font-wqy-zenhei
+
 COPY ./policies.json         /usr/lib/firefox/distribution/policies.json
 COPY ./newnym                /usr/local/bin/
 COPY ./docker-entrypoint.sh  /usr/local/bin/
