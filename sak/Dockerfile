@@ -17,6 +17,7 @@ RUN apk add --no-cache \
   openssh-client \
   postgresql-client \
   psqlodbc \
+  tcpdump \
   vim \
   zip
 
