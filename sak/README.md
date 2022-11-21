@@ -13,18 +13,3 @@ docker run --rm -it \
 This image is meant to be used **interactively**, its default `CMD` is a login
 shell (`sh -l`).
 
-
-## Packages provided
-- ca-certificates
-- figlet
-- busybox-extras (telnet)
-- bind-tools
-- netcat-openbsd
-- openssh-client
-- curl
-- jq
-- mysql-client
-- postgresql-client psqlodbc
-- git
-- bzip2 gzip zip
-- vim
