@@ -1,6 +1,11 @@
 #!/bin/sh
 
-cat > /etc/stunnel/stunnel.conf <<EOF
+if [ "$SSL_DOMAIN" = "" ] ; then
+  echo "[FATAL] undefined SSL_DOMAIN"
+  exit 1
+fi
+
+cat > /etc/stunnel/stunnel.conf << EOF
 foreground = yes
 setuid = root
 setgid = root
@@ -29,5 +34,13 @@ if [ "$VERIFY" ] ; then
 else
   echo "verifyChain = no" >> /etc/stunnel/stunnel.conf
 fi
+
+cat > /etc/crontabs/root << EOF
+#m  h  d  M  w  command
+ 0  0  *  *  *  killall -HUP stunnel
+#
+EOF
+
+crond -l 8
 
 exec "$@"
