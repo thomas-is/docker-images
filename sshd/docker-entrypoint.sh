@@ -29,7 +29,6 @@ PasswordAuthentication no
 PermitRootLogin without-password
 Banner none
 PrintMotd no
-PrintLastLog no
 #Subsystem sftp internal-sftp
 EOF
 
