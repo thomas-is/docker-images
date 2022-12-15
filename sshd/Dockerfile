@@ -2,8 +2,9 @@ ARG ALPINE=latest
 
 FROM alpine:$ALPINE
 
-ENV USER  user
-ENV SHELL /bin/false
+ENV USER      user
+ENV UID       1000
+ENV SHELL     /bin/false
 
 RUN apk add --no-cache openssh-server
 
@@ -12,7 +13,7 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 
 VOLUME /etc/ssh
-VOLUME /user/.ssh/authorized_keys
+VOLUME /authorized_keys
 
 EXPOSE 22
 

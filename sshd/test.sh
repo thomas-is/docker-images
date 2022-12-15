@@ -9,7 +9,7 @@ docker run --rm -it \
   --name sshd \
   -e USER=dev \
   -e SHELL=/bin/sh \
-  -v $HOME/.ssh/authorized_keys:/user/.ssh/authorized_keys:ro \
+  -v $HOME/.ssh/authorized_keys:/authorized_keys:ro \
   -v $BASE/ssh:/etc/ssh \
   -p 2222:22 \
   sshd
