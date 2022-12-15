@@ -26,4 +26,6 @@ PrintMotd no
 #Subsystem sftp internal-sftp
 EOF
 
+/usr/local/bin/sshd-conf-monitor.sh &
+
 exec $@

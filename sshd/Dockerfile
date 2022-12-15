@@ -9,8 +9,8 @@ ENV SHELL     /bin/false
 RUN apk add --no-cache openssh-server
 
 COPY profile /etc/profile
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
+COPY bin /usr/local/bin/
+RUN chmod -R 755 /usr/local/bin
 
 VOLUME /etc/ssh
 VOLUME /authorized_keys
