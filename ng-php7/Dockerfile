@@ -3,25 +3,28 @@ FROM alpine:3.15
 ENV FPM_USER    nobody
 ENV LOG_FORMAT  main
 
-RUN apk update && apk upgrade && \
-  apk add ca-certificates nginx php7 php7-fpm \
+RUN apk add --no-cache \
+  ca-certificates \
+  nginx \
+  php7 \
   php7-curl \
+  php7-fpm \
   php7-iconv \
   php7-json \
   php7-mbstring \
   php7-openssl \
-  php7-pdo php7-pdo_mysql php7-pdo_pgsql \
+  php7-pdo \
+  php7-pdo_mysql \
+  php7-pdo_pgsql \
   php7-pecl-ssh2 \
   php7-session
 
-RUN rm -rf /var/cache/apk/*
-RUN mkdir -p /run/nginx
-
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
-
 COPY ./ng-default.conf /etc/nginx/http.d/default.conf
 COPY ./srv /srv
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+RUN chmod -R 755 /usr/local/bin
+RUN mkdir -p /run/nginx
 
 WORKDIR /srv
 

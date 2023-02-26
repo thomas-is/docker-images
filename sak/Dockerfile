@@ -2,6 +2,7 @@ ARG ALPINE=latest
 
 FROM alpine:$ALPINE
 
+COPY profile /etc/profile
 RUN apk add --no-cache \
   bash \
   bind-tools \
@@ -20,12 +21,8 @@ RUN apk add --no-cache \
   tcpdump \
   vim \
   zip
-
 ADD https://raw.githubusercontent.com/crypt1d/redi.sh/master/redi.sh /usr/local/bin/redis
-RUN chmod +x /usr/local/bin/redis
-
 ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
-
-COPY profile /etc/profile
+RUN chmod -R 744 /usr/local/bin
 
 CMD [ "/bin/sh", "-l" ]
