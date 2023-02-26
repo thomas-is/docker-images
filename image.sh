@@ -8,6 +8,12 @@ GRN="\033[1;32m"
 ORG="\033[1;33m"
 BLU="\033[1;34m"
 
+run() {
+  CMD="$@"
+  echo "[$GRN$REPO/$IMAGE$RST] $BLU$CMD$RST"
+  $CMD
+}
+
 case $( uname -m ) in
   x86_64)
     TAG="amd64"
@@ -15,9 +21,6 @@ case $( uname -m ) in
     ;;
   armv7l)
     TAG="arm32v7"
-#   workaround alpine issue on arm
-#   <https://gitlab.alpinelinux.org/alpine/aports/-/issues/12091>
-#    ALPINE="3.12"
     ALPINE="latest"
     ;;
   *)
@@ -33,22 +36,23 @@ fi
 # remove unwanted "/"
 IMAGELIST=$( echo "$IMAGELIST" | sed -e 's/\///g' )
 
-echo
 for IMAGE in $IMAGELIST
 do
 
-  if [ ! -f $IMAGE/Dockerfile ] ; then continue ; fi
-  if [ -f $IMAGE/ignore ] ; then echo "[$ORG$REPO/$IMAGE$RST] ignored"; continue ; fi
+  if [ ! -f $IMAGE/Dockerfile ] ; then
+    continue
+  fi
 
-  echo "[$GRN$REPO/$IMAGE$RST]"
+  if [ -f $IMAGE/ignore ] ; then
+    echo "[$ORG$REPO/$IMAGE$RST] ignored"
+    continue
+  fi
 
-  CMD="docker build -t $REPO/$IMAGE:$TAG --build-arg ALPINE=$ALPINE ./$IMAGE"
-  echo "  $CMD"
-  $CMD > /dev/null || exit 1
-
-  CMD="docker push 0lfi/$IMAGE:$TAG"
-  echo "  $CMD"
-  $CMD > /dev/null || exit 1
+  run docker build -t $REPO/$IMAGE:$TAG --build-arg ALPINE=$ALPINE ./$IMAGE || exit 1
+  run docker push $REPO/$IMAGE:$TAG || exit 1
+  run docker manifest rm $REPO/$IMAGE:latest
+  run docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:amd64 --amend $REPO/$IMAGE:arm32v7 || exit 1
+  run docker manifest annotate --variant v7 $REPO/$IMAGE:latest $REPO/$IMAGE:arm32v7 || exit 1
+  run docker manifest push $REPO/$IMAGE:latest || exit 1
 
 done
-echo
