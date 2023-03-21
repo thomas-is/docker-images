@@ -1,23 +1,23 @@
-ARG ALPINE=latest
-
-FROM alpine:$ALPINE
+FROM alpine:3.16
 
 ENV FPM_USER      nobody
 ENV LOG_FORMAT    main
 
-RUN apk update && apk upgrade && \
-  apk add ca-certificates nginx php8 php8-fpm \
+RUN apk add --no-cache \
+  ca-certificates \
+  nginx \
+  php8 \
+  php8-fpm \
   php8-curl \
   php8-iconv \
   php8-json \
   php8-mbstring \
   php8-openssl \
-  php8-pdo php8-pdo_mysql php8-pdo_pgsql \
+  php8-pdo \
+  php8-pdo_mysql \
+  php8-pdo_pgsql \
   php8-session
 
-#RUN ln -s /usr/bin/php8 /usr/bin/php
-
-RUN rm -rf /var/cache/apk/*
 RUN mkdir -p /run/nginx
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
