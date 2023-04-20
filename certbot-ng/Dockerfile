@@ -2,12 +2,12 @@ ARG ALPINE=latest
 
 FROM alpine:$ALPINE
 
-RUN apk update && apk upgrade \
-&&  apk add ca-certificates nginx certbot-nginx
+ENV SCHEDULE "0 4 * * *"
 
-RUN rm -rf /var/cache/apk/*
-
-RUN mkdir -p /run/nginx
+RUN apk add --no-cache \
+  ca-certificates \
+  certbot-nginx \
+  nginx
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh

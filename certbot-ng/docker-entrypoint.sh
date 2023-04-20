@@ -1,6 +1,9 @@
 #!/bin/sh
 
-printf "# m	h	d	M	w	command\n  0	4	*	*	*	certbot renew --nginx -n\n\n" > /etc/crontabs/root
+cat << EOF > /etc/crontabs/root
+$SCHEDULE certbot renew --nginx -n
+#
+EOF
 
 crond -f -l 8 &
 
