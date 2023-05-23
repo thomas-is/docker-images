@@ -6,6 +6,6 @@ All images are based on Alpine.
 
 ## shell scripts
 
-- `image.sh`: build, push and handle manifest
+- `image.sh`: build and push
 - `manifest.sh`: handle manifest
 - `update-readme.sh`: update README on dockerhub

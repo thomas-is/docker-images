@@ -1,6 +1,7 @@
 #!/bin/sh
 
 REPO="0lfi"
+ALPINE="latest"
 
 RST="\033[0m"
 RED="\033[1;31m"
@@ -17,15 +18,12 @@ run() {
 case $( uname -m ) in
   x86_64)
     TAG="amd64"
-    ALPINE="latest"
     ;;
   armv7l)
     TAG="arm32v7"
-    ALPINE="latest"
     ;;
   aarch64)
     TAG="arm64v8"
-    ALPINE="latest"
     ;;
   *)
     TAG="noarch"
@@ -54,12 +52,5 @@ do
 
   run docker build -t $REPO/$IMAGE:$TAG --build-arg ALPINE=$ALPINE ./$IMAGE || exit 1
   run docker push $REPO/$IMAGE:$TAG || exit 1
-  run docker manifest rm $REPO/$IMAGE:latest
-  run docker manifest create $REPO/$IMAGE:latest \
-    --amend $REPO/$IMAGE:amd64 \
-    --amend $REPO/$IMAGE:arm64v8 \
-    || exit 1
-  run docker manifest annotate --variant v8 $REPO/$IMAGE:latest $REPO/$IMAGE:arm64v8 || exit 1
-  run docker manifest push $REPO/$IMAGE:latest || exit 1
 
 done

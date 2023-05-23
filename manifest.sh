@@ -18,7 +18,7 @@ IMAGELIST=$( echo "$IMAGELIST" | sed -e 's/\///g' )
 
 echo
 # create manifest for each image
-# `latest`, `amd64` and `arm32v7` images must exists on registry already
+# `latest`, `amd64` and `arm64v8` images must exists on registry already
 for IMAGE in $IMAGELIST
 do
 
