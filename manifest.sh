@@ -31,11 +31,11 @@ do
   echo "  $CMD"
   $CMD > /dev/null
 
-  CMD="docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:amd64 --amend $REPO/$IMAGE:arm32v7"
+  CMD="docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:amd64 --amend $REPO/$IMAGE:arm64v8"
   echo "  $CMD"
   $CMD > /dev/null || exit 1
 
-  CMD="docker manifest annotate --variant v7 $REPO/$IMAGE:latest $REPO/$IMAGE:arm32v7"
+  CMD="docker manifest annotate --variant v8 $REPO/$IMAGE:latest $REPO/$IMAGE:arm64v8"
   echo "  $CMD"
   $CMD > /dev/null || exit 1
 
