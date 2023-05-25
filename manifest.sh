@@ -33,15 +33,24 @@ do
 
   CMD="docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:amd64 --amend $REPO/$IMAGE:arm64v8"
   echo "  $CMD"
-  $CMD > /dev/null || exit 1
+  $CMD > /dev/null
 
-  CMD="docker manifest annotate --variant v8 $REPO/$IMAGE:latest $REPO/$IMAGE:arm64v8"
-  echo "  $CMD"
-  $CMD > /dev/null || exit 1
+  if [ $? -ne 0 ]; then
+    echo "  ${ORG}manifest failed, fallback to amd64$RST "
+    CMD="docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:amd64"
+    echo "  $CMD"
+    $CMD > /dev/null || exit 1
+  else
+    CMD="docker manifest annotate --variant v8 $REPO/$IMAGE:latest $REPO/$IMAGE:arm64v8"
+    echo "  $CMD"
+    $CMD > /dev/null || exit 1
+  fi
 
   CMD="docker manifest push $REPO/$IMAGE:latest"
   echo "  $CMD"
   $CMD > /dev/null || exit 1
+  echo "  ${GRN}ok$RST "
 
 done
 echo
+
