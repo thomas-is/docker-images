@@ -16,5 +16,4 @@ WORKDIR /src
 
 VOLUME /src
 
-ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "sh", "-l" ]
