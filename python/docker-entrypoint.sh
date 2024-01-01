@@ -12,10 +12,10 @@ if [ "$PKG" != "" ] ; then
     echo "[fatal] can't find /home/python/.virtual/bin/activate"
     exit 1
   fi
-  for package in $( echo $PKG | sed 's/,/ /g' ); do
+  for package in $PKG; do
     su python -c ". /home/python/.virtual/bin/activate && pip3 install $package"
   done
 fi
 
 CMD="$@"
-su python -c "$CMD"
+su python -c ". /home/python/.virtual/bin/activate ; $CMD"
