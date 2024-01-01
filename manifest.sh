@@ -33,7 +33,7 @@ do
 
   CMD="docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:amd64 --amend $REPO/$IMAGE:arm64v8"
   echo "  $CMD"
-  $CMD > /dev/null
+  $CMD 2> /dev/null 1> /dev/null
 
   if [ $? -ne 0 ]; then
     echo "  ${ORG}manifest failed, fallback to amd64$RST "
