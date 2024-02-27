@@ -6,7 +6,7 @@ BLUE="\[\e[1;34m\]"
 PURPLE="\[\e[1;35m\]"
 CYAN="\[\e[1;36m\]"
 
-PS1="$CYAN\u@$( python --version | sed 's/ /-/g' | sed 's/^P/p/g' )$NORMAL:$BLUE\w$NORMAL# "
+PS1="$GREEN\u@🐍$( python --version | awk '{ print $2 }' )$NORMAL:$BLUE\w$NORMAL# "
 
 alias l="ls -lh"
 alias ll="ls -hal"

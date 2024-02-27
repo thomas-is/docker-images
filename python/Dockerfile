@@ -1,19 +1,30 @@
-ARG ALPINE=latest
-
-FROM alpine:$ALPINE
+FROM alpine:latest
 
 RUN apk add --no-cache \
-    python3 \
-    py3-pip \
-    vim
+  py3-pip
 
-COPY profile /etc/profile
+RUN mkdir -p /opt/venv
+RUN python3 -m venv /opt/venv \
+  &&  . /opt/venv/bin/activate \
+  && pip install -U \
+    pip \
+    setuptools \
+    wheel \
+  && deactivate
 
-ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
+#COPY ./src/requirements.txt /opt/
+#RUN python3 -m venv /opt/venv \
+#  &&  . /opt/venv/bin/activate \
+#  && pip install -r /opt/requirements.txt \
+#  && deactivate
+
 
 RUN mkdir /src
 WORKDIR /src
 
-VOLUME /src
+COPY profile /etc/profile
+COPY ./docker-entrypoint.sh /usr/local/bin/
+RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
 
-CMD [ "sh", "-l" ]
+ENTRYPOINT [ "docker-entrypoint.sh" ]
+CMD [ "/bin/sh", "-l" ]
