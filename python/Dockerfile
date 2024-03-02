@@ -12,19 +12,14 @@ RUN python3 -m venv /opt/venv \
     wheel \
   && deactivate
 
-#COPY ./src/requirements.txt /opt/
-#RUN python3 -m venv /opt/venv \
-#  &&  . /opt/venv/bin/activate \
-#  && pip install -r /opt/requirements.txt \
-#  && deactivate
-
-
 RUN mkdir /src
 WORKDIR /src
 
 COPY profile /etc/profile
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
+
+VOLUME /src
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "/bin/sh", "-l" ]
