@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+ENV REQUIREMENTS "/src/requirements.txt"
+
 RUN apk add --no-cache \
   py3-pip
 
@@ -12,14 +14,13 @@ RUN python3 -m venv /opt/venv \
     wheel \
   && deactivate
 
-RUN mkdir /src
-WORKDIR /src
-
 COPY profile /etc/profile
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
 
-VOLUME /src
+RUN mkdir /src
+WORKDIR /src
+VOLUME [ "/src", "/opt/venv" ]
 
-ENTRYPOINT [ "docker-entrypoint.sh" ]
+ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
 CMD [ "/bin/sh", "-l" ]
