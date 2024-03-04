@@ -1,16 +1,14 @@
-#!/opt/venv/bin/python
 # -*- coding: UTF-8 -*-
 
-import pandas as dataFrame
-from datetime import datetime
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
+import numpy as np
 
-df = dataFrame.read_csv('data.csv')
-df['Date'] = df['Date'].map(lambda x: datetime.strptime(str(x), '%Y-%m-%d'))
-x1 = df['Date']
-y1 = df['Adj Close']
+x = np.linspace(0,2,10)
 
-## plot
-plt.plot(x1,y1,label="Data")
+plt.figure()
+plt.title('It works!')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.plot(x, x**3, label='cubic')
+plt.legend()
 plt.show()

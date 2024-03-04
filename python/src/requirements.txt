@@ -1,5 +1,2 @@
-pandas
-psycopg2-binary
-pyyaml
-mathplot
 matplotlib
+numpy
