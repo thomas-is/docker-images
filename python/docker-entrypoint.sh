@@ -16,7 +16,7 @@ if [ -f $REQUIREMENTS ] ; then
   && pip install -r $REQUIREMENTS \
   || exit 1
 else
-  echo "🐍 $REQUIREMENTS not found, skip install"
+  echo "🐍 no $REQUIREMENTS found"
 fi
 
 echo "🐍 pip list"
