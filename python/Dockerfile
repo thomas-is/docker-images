@@ -1,22 +1,30 @@
 FROM alpine:latest
 
+# python user id is set at build time
+ARG PYTHON_UID=1000
+
+# default requirements file for pip
 ENV REQUIREMENTS "/src/requirements.txt"
 
-RUN apk add --no-cache py3-pip
+RUN apk add --no-cache \
+  font-terminus \
+  py3-pip \
+  python3-tkinter
 
-COPY profile /etc/profile
-
+COPY ./profile              /etc/profile
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
 
-RUN mkdir -p /.cache/pip  \
-  && chmod 777 /.cache/pip \
+RUN  adduser -D -u $PYTHON_UID python \
+  && mkdir -p /.cache/pip  \
+  && chown python:python /.cache/pip \
   && mkdir /venv \
-  && chmod 777 /venv \
-  && mkdir /src
+  && chown python:python /venv \
+  && mkdir /src \
+  && chown python:python /src
 
+USER python
 WORKDIR /src
-
 VOLUME [ "/src", "/venv" ]
 
 ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
