@@ -5,14 +5,11 @@ ENV REQUIREMENTS "/src/requirements.txt"
 RUN apk add --no-cache \
   py3-pip
 
-RUN mkdir -p /opt/venv
-RUN python3 -m venv /opt/venv \
-  &&  . /opt/venv/bin/activate \
-  && pip install -U \
-    pip \
-    setuptools \
-    wheel \
-  && deactivate
+RUN mkdir -p /.cache/pip
+RUN chmod 777 /.cache/pip
+
+RUN mkdir -p /venv
+RUN chmod 777 /venv
 
 COPY profile /etc/profile
 COPY ./docker-entrypoint.sh /usr/local/bin/

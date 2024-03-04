@@ -1,9 +1,18 @@
 #!/bin/sh
 
+echo "🐍 pip intall -U pip setuptools wheel"
+python3 -m venv /venv \
+  &&  . /venv/bin/activate \
+  && pip install -U \
+    pip \
+    setuptools \
+    wheel \
+  && deactivate
+
 if [ -f $REQUIREMENTS ] ; then
-  echo "🐍 found $REQUIREMENTS"
-  python3 -m venv /opt/venv \
-  && . /opt/venv/bin/activate \
+  echo "🐍 pip install -r $REQUIREMENTS"
+  python3 -m venv /venv \
+  && . /venv/bin/activate \
   && pip install -r $REQUIREMENTS \
   || exit 1
 else
@@ -13,7 +22,7 @@ fi
 echo "🐍 pip list"
 pip list
 
-echo "🐍 added /opt/venv/bin to PATH"
-export PATH="/opt/venv/bin:$PATH"
+echo "🐍 add /venv/bin to PATH"
+export PATH="/venv/bin:$PATH"
 
 exec $@
