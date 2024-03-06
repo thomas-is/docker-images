@@ -9,11 +9,13 @@ ENV REQUIREMENTS "/src/requirements.txt"
 RUN apk add --no-cache \
   font-terminus \
   py3-pip \
-  python3-tkinter
+  python3-tkinter \
+  vim
 
 COPY ./profile              /etc/profile
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
+ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
 
 RUN  adduser -D -u $PYTHON_UID python \
   && mkdir -p /.cache/pip  \
