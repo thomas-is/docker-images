@@ -8,11 +8,13 @@ ENV REQUIREMENTS "/src/requirements.txt"
 
 RUN  apt-get update \
   && apt-get install -y \
-      xfonts-terminus \
+      jq \
       python3-pip \
       python3-tk \
       python3-venv \
-      vim
+      vim \
+      xfonts-terminus \
+  && rm -rf /var/lib/apt/lists/*
 
 ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
 RUN chmod 644 /etc/vim/vimrc
