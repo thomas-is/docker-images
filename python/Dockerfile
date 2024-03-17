@@ -11,7 +11,11 @@ RUN  apt-get update \
       xfonts-terminus \
       python3-pip \
       python3-tk \
-      python3-venv
+      python3-venv \
+      vim
+
+ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
+RUN chmod 644 /etc/vim/vimrc
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
