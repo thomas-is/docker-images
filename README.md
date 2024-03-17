@@ -2,7 +2,7 @@
 
 <https://hub.docker.com/u/0lfi>
 
-All images are based on Alpine.
+Most images are based on Alpine. Only the python image is Debian based.
 
 ## shell scripts
 
