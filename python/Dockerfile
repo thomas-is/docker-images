@@ -28,10 +28,12 @@ RUN  adduser --uid $PYTHON_UID --home /home/python --disabled-password python \
   && mkdir /src \
   && chown python:python /src
 
-#COPY ./bash.bashrc /etc/bash.bashrc
 COPY ./bash.bashrc /home/python/.bashrc
+COPY ./bash.bash_aliases /home/python/.bash_aliases
 RUN  chown python:python /home/python/.bashrc \
-  && chmod 644 /home/python/.bashrc
+  && chmod 644 /home/python/.bashrc \
+  && chown python:python /home/python/.bash_aliases \
+  && chmod 644 /home/python/.bash_aliases
 
 USER python
 WORKDIR /src
