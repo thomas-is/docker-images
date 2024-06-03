@@ -14,6 +14,7 @@ RUN apk add --no-cache \
   jq \
   mysql-client \
   netcat-openbsd \
+  nmap \
   openssh-client \
   postgresql-client \
   psqlodbc \
