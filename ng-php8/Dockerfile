@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.20
 
 ENV FPM_USER      nobody
 ENV LOG_FORMAT    main
@@ -6,17 +6,17 @@ ENV LOG_FORMAT    main
 RUN apk add --no-cache \
   ca-certificates \
   nginx \
-  php8 \
-  php8-fpm \
-  php8-curl \
-  php8-iconv \
-  php8-json \
-  php8-mbstring \
-  php8-openssl \
-  php8-pdo \
-  php8-pdo_mysql \
-  php8-pdo_pgsql \
-  php8-session
+  php83 \
+  php83-fpm \
+  php83-curl \
+  php83-iconv \
+  php83-json \
+  php83-mbstring \
+  php83-openssl \
+  php83-pdo \
+  php83-pdo_mysql \
+  php83-pdo_pgsql \
+  php83-session
 
 RUN mkdir -p /run/nginx
 
