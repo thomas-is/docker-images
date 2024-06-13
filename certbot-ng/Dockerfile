@@ -2,10 +2,12 @@ ARG ALPINE=latest
 
 FROM alpine:$ALPINE
 
-RUN apk update && apk upgrade \
-&&  apk add ca-certificates nginx certbot-nginx
+ENV RENEW_SCHEDULE "0 4 * * *"
 
-RUN rm -rf /var/cache/apk/*
+RUN apk add --no-cache \
+  ca-certificates \
+  certbot-nginx \
+  nginx
 
 RUN mkdir -p /run/nginx
 
