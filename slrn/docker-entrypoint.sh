@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-cat << EOF > /home/root
+cat << EOF > /home/slrn/.slrnrc
 set username "thomas.alexandre"
 set hostname "no.invalid"
 set realname "Thomas Alexandre"

@@ -1,20 +1,23 @@
-ARG ALPINE=edge
+ARG ALPINE=latest
 
 FROM alpine:$ALPINE
+ARG SLRN_UID=1000
 
 ENV NNTPSERVER  "news.free.fr"
 ENV EDITOR      "vim"
 
 RUN apk add --no-cache \
-  --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
   slrn \
   vim
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
-RUN chmod -R 744 /usr/local/bin
+RUN chmod -R 755 /usr/local/bin
 
-RUN mkdir -p /home/lsrn
+RUN mkdir -p /home/slrn
+RUN  adduser -D -u $SLRN_UID slrn \
+  && chown slrn:slrn /home/slrn
 WORKDIR /home/slrn
+USER slrn
 
-ENTRYPOINT [ "docker-entrypoint.sh" ]
+ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
 CMD [ "sh", "-l" ]
