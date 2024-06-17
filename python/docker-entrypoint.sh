@@ -12,6 +12,10 @@ GRY="\033[1;38m\033m"
 info() {
   printf "[${BLU}info$RST] %s\n" "$@"
 }
+warn() {
+  printf "[${ORG}warn$RST] %s\n" "$@"
+}
+
 
 info "activate /venv"
 python3 -m venv /venv \
@@ -29,12 +33,11 @@ if [ -f $REQUIREMENTS ] ; then
   info "pip install -r $REQUIREMENTS"
   pip install -r $REQUIREMENTS || exit 1
 else
-  info "no $REQUIREMENTS found"
+  warn "$REQUIREMENTS not found"
 fi
 
 info "installed packages:"
 pip list
 
 info "end of entrypoint"
-
 exec $@
