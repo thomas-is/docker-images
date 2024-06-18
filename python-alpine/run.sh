@@ -8,8 +8,8 @@ touch $base/src/requirements.txt
 
 docker build -t python . || exit 1
 docker run --rm -it \
-  --user $(id -u) \
-  -v $base/src/requirements.txt:/src/requirements.txt \
+  --name python \
+  -v $base/src:/src \
   -v $base/venv:/venv \
   -w /src \
   python
