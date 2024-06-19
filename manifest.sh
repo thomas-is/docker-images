@@ -8,6 +8,21 @@ GRN="\033[1;32m"
 ORG="\033[1;33m"
 BLU="\033[1;34m"
 
+case $( uname -m ) in
+  x86_64)
+    arch="amd64"
+    ;;
+  armv7l)
+    arch="arm32v7"
+    ;;
+  aarch64)
+    arch="arm64v8"
+    ;;
+  *)
+    arch="noarch"
+  ;;
+esac
+
 if [ "$1" != "" ] ; then
   IMAGELIST="$@"
 else
@@ -36,8 +51,8 @@ do
   $CMD > /dev/null
 
   if [ $? -ne 0 ]; then
-    echo "  ${ORG}manifest failed, fallback to amd64$RST "
-    CMD="docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:amd64"
+    echo "  ${ORG}manifest failed, fallback to $arch$RST "
+    CMD="docker manifest create $REPO/$IMAGE:latest --amend $REPO/$IMAGE:$arch"
     echo "  $CMD"
     $CMD > /dev/null || exit 1
   else
