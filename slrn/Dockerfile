@@ -10,6 +10,9 @@ RUN apk add --no-cache \
   slrn \
   vim
 
+ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
+RUN chmod 644 /etc/vim/vimrc
+
 COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod -R 755 /usr/local/bin
 
