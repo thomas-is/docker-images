@@ -4,7 +4,7 @@ FROM alpine:latest
 ARG PYTHON_UID=1000
 
 # default requirements file for pip
-ENV REQUIREMENTS "/src/requirements.txt"
+ENV REQUIREMENTS="/src/requirements.txt"
 
 # font-terminus is needed by tkinter
 RUN apk add --no-cache \
@@ -30,6 +30,7 @@ RUN  adduser -D -u $PYTHON_UID python \
   && chown python:python /src
 
 USER python
+
 WORKDIR /src
 VOLUME [ "/src", "/venv" ]
 
