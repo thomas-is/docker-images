@@ -12,7 +12,7 @@ pip install -U \
   || exit 1
 
 if [ -f $REQUIREMENTS ] ; then
-  ehcho "📦 pip install -r $REQUIREMENTS"
+  echo "📦 pip install -r $REQUIREMENTS"
   pip install -r $REQUIREMENTS || exit 1
 else
   echo "❗ $REQUIREMENTS not found"
