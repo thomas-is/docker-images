@@ -21,7 +21,7 @@ ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
 RUN chmod 644 /etc/vim/vimrc
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
-RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
+RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 
 RUN  adduser -D -u $PYTHON_UID python \
   && addgroup python wheel \
