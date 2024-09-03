@@ -42,6 +42,7 @@ for IMAGE in $IMAGELIST
 do
 
   if [ ! -f $IMAGE/Dockerfile ] ; then
+    echo "[$ORG$REPO/$IMAGE$RST] Dockerfile not found"
     continue
   fi
 
