@@ -1,4 +1,4 @@
-FROM debian:unstable-20240812-slim
+FROM debian:unstable-20240904-slim
 
 ARG UID=1000
 
@@ -19,6 +19,7 @@ RUN apt-get install -y locales && \
   update-locale LANG=$LANG
 
 RUN apt-get install -y \
+  aspell-fr \
   fonts-firacode \
   fonts-noto-color-emoji \
   pan \
