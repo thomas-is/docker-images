@@ -16,13 +16,11 @@ ADD https://raw.githubusercontent.com/thomas-is/rc/main/.vimrc /etc/vim/vimrc
 RUN chmod 644 /etc/vim/vimrc
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
-RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
+RUN chmod 755 /usr/local/bin
 
 RUN  adduser -D -u $AWS_UID aws \
   && addgroup aws wheel \
   && echo "permit nopass :wheel" >> /etc/doas.d/doas.conf \
-  && mkdir -p /.cache/pip  \
-  && chown aws:aws /.cache/pip \
   && mkdir /venv \
   && chown aws:aws /venv
 
@@ -38,7 +36,8 @@ RUN python3 -m venv /venv \
     setuptools \
     wheel \
   && /venv/bin/pip install \
-    awscli
+    awscli \
+    aws-sam-cli
 
 VOLUME [ "/home/aws/.aws" ]
 
