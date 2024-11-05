@@ -25,8 +25,8 @@ RUN  adduser -D -u $AWS_UID aws \
   && mkdir /venv \
   && chown aws:aws /venv
 
-COPY ./sh.rc /opt/sh.rc
-ENV ENV=/opt/sh.rc
+COPY ./sh.rc /etc/sh.rc
+ENV ENV=/etc/sh.rc
 
 USER aws
 WORKDIR /home/aws
