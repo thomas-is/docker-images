@@ -5,6 +5,7 @@ ARG AWS_UID=1000
 
 RUN apk add --no-cache \
   doas \
+  git \
   jq \
   mandoc \
   py3-pip \
