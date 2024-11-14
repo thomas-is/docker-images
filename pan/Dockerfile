@@ -1,4 +1,4 @@
-FROM debian:unstable-20240904-slim
+FROM debian:unstable-slim
 
 ARG UID=1000
 
@@ -22,11 +22,15 @@ RUN apt-get install -y \
   aspell-fr \
   fonts-firacode \
   fonts-noto-color-emoji \
+  fonts-noto-cjk \
   pan \
+  sudo \
   && rm -rf /var/lib/apt/lists/*
 
 RUN  adduser --uid $UID --home /home/thomas --disabled-password thomas \
   && chown $UID:$UID /home/thomas
+
+RUN echo "thomas	ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER thomas
 WORKDIR /home/thomas
