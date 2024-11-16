@@ -5,6 +5,7 @@ ARG AWS_UID=1000
 
 RUN apk add --no-cache \
   doas \
+  docker \
   git \
   jq \
   mandoc \
@@ -20,6 +21,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin
 
 RUN  adduser -D -u $AWS_UID aws \
+  && addgroup aws docker \
   && addgroup aws wheel \
   && echo "permit nopass :wheel" >> /etc/doas.d/doas.conf \
   && mkdir /venv \

@@ -11,4 +11,5 @@ docker run --rm -it \
   --name awscli \
   -v ~/.aws:/home/aws/.aws \
   -v ~/lab/aws/src:/home/aws/src \
+  -v /var/run/docker.sock:/var/run/docker.sock \
   awscli
