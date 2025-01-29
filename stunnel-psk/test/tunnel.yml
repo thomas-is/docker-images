@@ -1,0 +1,41 @@
+version: "3.8"
+
+networks:
+  test:
+
+services:
+
+  nginx:
+    image: 0lfi/ng
+    networks:
+      - test
+
+  server:
+    image: stunnel-test
+    networks:
+      - test
+    labels:
+      com.incube.log.exclude: "true"
+    environment:
+      PSK_FILE:   "/opt/psk"
+      CLIENT:     "no"
+      ACCEPT:     "0.0.0.0:8080"
+      CONNECT:    "nginx:80"
+    volumes:
+      - ./psk:/opt/psk:ro
+
+  client:
+    image: stunnel-test
+    networks:
+      - test
+    ports:
+      - "8080:8080"
+    labels:
+      com.incube.log.exclude: "true"
+    environment:
+      PSK_FILE:   "/opt/psk"
+      CLIENT:     "yes"
+      ACCEPT:     "0.0.0.0:8080"
+      CONNECT:    "server:8080"
+    volumes:
+      - ./psk:/opt/psk:ro
