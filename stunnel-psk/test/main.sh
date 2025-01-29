@@ -20,3 +20,11 @@ sleep 5
 
 echo "⚙️  curl"
 curl http://127.0.0.1:8080
+if [ $? -eq 0 ]; then
+  echo "🎉 success!"
+else
+  echo "💥 failure"
+fi
+
+echo "👋 docker stack rm"
+docker stack rm tunnel
