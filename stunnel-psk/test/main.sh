@@ -15,10 +15,14 @@ echo "testing:$( echo $(openssl rand 64 | base64 ))" > ./psk
 echo "🐳 docker stack deploy"
 docker stack deploy -c tunnel.yml tunnel
 
-echo "😪 waiting a few seconds"
-sleep 5
+printf "😪 waiting for services to be up "
+for n in $( seq 1 5); do
+  printf "."
+  sleep 1
+done
+printf "\n"
 
-echo "⚙️  curl"
+echo "⚙️  curl http://127.0.0.1:8080"
 curl http://127.0.0.1:8080
 if [ $? -eq 0 ]; then
   echo "🎉 success!"
