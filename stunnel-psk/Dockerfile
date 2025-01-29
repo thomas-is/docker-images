@@ -7,7 +7,7 @@ ENV ACCEPT      0.0.0.0:8080
 ENV CONNECT     127.0.0.1:80
 ENV PSK_FILE    /run/secrets/psk
 
-RUN apk --no-cache \
+RUN apk add --no-cache \
   openssl \
   stunnel
 
