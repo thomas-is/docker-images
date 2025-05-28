@@ -2,10 +2,11 @@ ARG ALPINE=latest
 
 FROM alpine:$ALPINE
 
-ENV CLIENT      no
-ENV ACCEPT      0.0.0.0:8080
-ENV CONNECT     127.0.0.1:80
-ENV PSK_FILE    /run/secrets/psk
+ENV CLIENT="no"
+ENV DELAY="no"
+ENV ACCEPT="0.0.0.0:8080"
+ENV CONNECT="127.0.0.1:80"
+ENV PSK_FILE="/run/secrets/psk"
 
 RUN apk add --no-cache \
   openssl \

@@ -13,6 +13,7 @@ client = ${CLIENT:-no}
 [tunnel]
 accept  = ${ACCEPT}
 connect = ${CONNECT}
+delay = ${DELAY}
 ciphers = PSK
 PSKsecrets = ${PSK_FILE}
 EOF
