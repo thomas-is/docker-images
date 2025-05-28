@@ -8,10 +8,9 @@ ENV OMFWD_HOST            ""
 ENV OMFWD_PORT            "514"
 ENV OMFWD_PROTOCOL        "tcp"
 
-RUN apk update && apk upgrade \
-&&  apk add ca-certificates rsyslog
-
-RUN rm -rf /var/cache/apk/*
+RUN apk add --no-cache \
+  ca-certificates \
+  rsyslog
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 COPY ./bin/rotate /usr/local/bin/
